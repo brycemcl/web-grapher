@@ -1,0 +1,16 @@
+{
+  "name": "puppeteer-crawler",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Bryce McLachlan",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "fs-extra": "^9.1.0",
+    "puppeteer": "^8.0.0"
+  }
+}
