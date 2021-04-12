@@ -1,12 +1,11 @@
-const workers = 12
-const output = './output/'
-const url = process.argv[2] || 'http://www.skeans.com/'
-
 const puppeteer = require('puppeteer')
 const { URL } = require('url')
 const fse = require('fs-extra')
 const path = require('path')
 const axios = require('axios').default
+const url = process.argv[2] || 'http://www.skeans.com/'
+let output = './output/' + new URL(url).host + '/'
+const workers = 12
 require('events').EventEmitter.defaultMaxListeners = 10 * workers
 const siteMap = {}
 const pages = {}
@@ -158,6 +157,7 @@ async function fetchUrl(urlToFetch) {
   } else {
     const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
     const page = await browser.newPage()
+    page.setDefaultNavigationTimeout(0)
     try {
       page.on('response', async (response) => {
         const url = new URL(response.url())
